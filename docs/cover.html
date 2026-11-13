@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Duolingo UI Skill · Cover</title>
+<style>
+  @font-face {
+    font-family: "Duo Rounded";
+    src: url("../assets/fonts/nunito-latin.woff2") format("woff2");
+    font-weight: 200 900;
+    font-style: normal;
+    font-display: block;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1600px; height: 900px; overflow: hidden;
+    background: #ffffff;
+    font-family: "Duo Rounded", "Nunito", "Segoe UI", sans-serif;
+    color: #4b4b4b;
+    -webkit-font-smoothing: antialiased;
+  }
+  .cover { position: relative; width: 1600px; height: 900px; }
+
+  /* soft mint stage ---------------------------------------------------- */
+  .stage {
+    position: absolute; left: 648px; top: -64px;
+    width: 1030px; height: 1030px; border-radius: 120px;
+    background: #d7ffb8;
+  }
+  .stage::after {
+    content: ""; position: absolute; right: -160px; top: -120px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: #eaffd9;
+  }
+  .stage__leaf {
+    position: absolute; left: -44px; bottom: 150px;
+    width: 120px; height: 120px; border-radius: 36px;
+    background: #a5ed6e; transform: rotate(18deg);
+  }
+  .stage__dot {
+    position: absolute; width: 18px; height: 18px; border-radius: 50%;
+    background: #a5ed6e;
+  }
+  .stage__dot--a { left: 84px; top: 120px; }
+  .stage__dot--b { left: 42px; top: 168px; width: 10px; height: 10px; }
+
+  /* left column -------------------------------------------------------- */
+  .col { position: absolute; left: 88px; top: 76px; width: 540px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    height: 34px; padding: 0 15px 0 13px;
+    border: 2px solid #e5e5e5; border-radius: 999px;
+    background: #fff;
+    font-size: 11px; font-weight: 800; letter-spacing: 1.2px;
+    color: #777;
+  }
+  .badge i { width: 9px; height: 9px; border-radius: 50%; background: #58cc02; }
+
+  h1 {
+    margin: 26px 0 0;
+    font-size: 104px; line-height: 0.92; font-weight: 800;
+    letter-spacing: -4.2px; color: #58cc02;
+    text-shadow: 0 5px 0 #478700;
+  }
+  h1 span { display: block; color: #4b4b4b; text-shadow: 0 5px 0 #d0d0d0; }
+  .lede {
+    margin: 34px 0 0;
+    font-size: 27px; line-height: 1.34; font-weight: 800; color: #4b4b4b;
+    letter-spacing: -0.3px;
+  }
+  .lede em { font-style: normal; color: #58cc02; }
+  .sub {
+    margin: 12px 0 0;
+    font-size: 17px; line-height: 1.55; font-weight: 600; color: #777;
+    letter-spacing: 0.1px;
+  }
+
+  .stats { display: flex; gap: 42px; margin-top: 38px; }
+  .stat b {
+    display: block; font-size: 40px; line-height: 1; font-weight: 800;
+    color: #4b4b4b; letter-spacing: -1.4px;
+  }
+  .stat b i { font-style: normal; color: #58cc02; }
+  .stat span { display: block; margin-top: 7px; font-size: 13px; font-weight: 700; color: #afafaf; }
+
+  .swatches { display: flex; gap: 9px; margin-top: 34px; }
+  .swatches i {
+    display: block; width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid #fff; box-shadow: 0 0 0 1.5px #e5e5e5;
+  }
+  .foot {
+    position: absolute; left: 88px; bottom: 62px;
+    font-size: 13px; font-weight: 700; color: #afafaf; letter-spacing: 0.2px;
+  }
+  .foot b { color: #777; }
+
+  /* phones ------------------------------------------------------------- */
+  .phone {
+    position: absolute; width: 380px; height: 824px;
+    border-radius: 44px;
+    box-shadow: 0 2px 0 rgba(71, 135, 0, 0.18), 0 26px 54px rgba(71, 135, 0, 0.22);
+    overflow: hidden;
+  }
+  .phone img { display: block; width: 380px; height: 824px; }
+  .phone--learn { left: 710px; top: 40px; }
+  .phone--lesson { left: 1130px; top: 40px; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="stage">
+      <span class="stage__leaf"></span>
+      <span class="stage__dot stage__dot--a"></span>
+      <span class="stage__dot stage__dot--b"></span>
+    </div>
+
+    <div class="col">
+      <span class="badge"><i></i>UNOFFICIAL · FAN KIT</span>
+      <h1>Duolingo<span>UI Skill</span></h1>
+      <p class="lede">让 AI 直接写出<br><em>多邻国</em>风格的界面。</p>
+      <p class="sub">48px 厚面 + 5px 实心底边 · 2px 描边 · 游戏化路径 · 单词卡答题<br>从三个 Figma 社区文件读出 token、组件、图标与 16 屏布局。</p>
+
+      <div class="stats">
+        <div class="stat"><b>16</b><span>屏流程</span></div>
+        <div class="stat"><b>58</b><span>个图标</span></div>
+        <div class="stat"><b><i>208</i></b><span>个样式类</span></div>
+      </div>
+
+      <div class="swatches">
+        <i style="background:#58cc02"></i>
+        <i style="background:#1cb0f6"></i>
+        <i style="background:#ff4b4b"></i>
+        <i style="background:#ffc800"></i>
+        <i style="background:#ff9600"></i>
+        <i style="background:#ce82ff"></i>
+        <i style="background:#d84f9e"></i>
+        <i style="background:#5aeab1"></i>
+      </div>
+    </div>
+
+    <div class="phone phone--learn"><img src="phones/01-learn.png" alt="学习路径"></div>
+    <div class="phone phone--lesson"><img src="phones/02-lesson.png" alt="单词卡答题"></div>
+
+    <div class="foot"><b>Agent Skill</b> · CSS + JS + Tailwind preset · Figma → code</div>
+  </div>
+</body>
+</html>

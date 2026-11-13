@@ -1,0 +1,10 @@
+# The upstream reference clone used while building this skill.
+_ref_smartisan/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,59 @@
+MIT License
+
+Copyright (c) 2026 zhpencil
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---------------------------------------------------------------------------
+Third-party material
+
+Design values, icon SVGs, brand marks used on the documentation pages and page
+screenshots (assets/icons, assets/icons-sprite.svg, assets/brand,
+references/screenshots) are derived from these Figma Community files, each
+published under Creative Commons Attribution 4.0 International (CC BY 4.0,
+https://creativecommons.org/licenses/by/4.0/):
+
+1. "DuoLingo Design System (Community)" by John Welch
+   https://www.figma.com/community/file/1460744749282136015/duolingo-design-system
+   File key: Y9HNcdPRyk3mrVUAzHgldI
+
+2. "Duolingo FREE UI Kit - By Marvilo (Community)" by Marvilo
+   https://www.figma.com/community/file/1377326303556981356/duolingo-free-ui-kit-by-marvilo
+   File key: woBGZQ1U4cS2myXqPfmrzw
+
+3. "Duolingo - Unofficial Design Language (Community)"
+   https://www.figma.com/community/file/1439600081437366863/duolingo-unofficial-design-language
+   File key: tUtC9p62GJq20mE82XXdz3
+
+Changes made to that material: values normalised into CSS custom properties and
+DTCG tokens; SVG ids prefixed with `di-` and made unique; root `fill="none"`
+restored on outline icons; sprites assembled; screenshots exported from Figma
+and, for the demo cover, re-rendered from this repository's HTML/CSS. The
+derived material remains under CC BY 4.0. Attribution must be preserved when
+you redistribute it.
+
+The bundled font, assets/fonts/nunito-latin.woff2, is Nunito by the Nunito
+Project Authors, licensed under the SIL Open Font License 1.1. The full licence
+text is in assets/fonts/OFL.txt.
+
+"Duolingo", the Duolingo owl, the Duolingo wordmark and related marks are
+trademarks or copyrighted works of Duolingo, Inc. This is an unofficial fan
+project. It is not affiliated with, sponsored by or endorsed by Duolingo, Inc.
+Do not use the brand assets in assets/brand or the mascot illustration as a
+product logo, and do not imply an official connection.

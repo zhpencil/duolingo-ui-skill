@@ -1,0 +1,1834 @@
+/* ==========================================================================
+   Duolingo UI — duolingo.css
+   Core values extracted from the Figma file "DuoLingo Design System
+   (Community)" (Y9HNcdPRyk3mrVUAzHgldI), with layout additions from the
+   Marvilo Free UI Kit and the Unofficial Design Language file.
+   Design © their authors, CC BY 4.0. Code © MIT.
+
+   Class prefix: .duo-   Token prefix: --duo-
+   Screen width: 430px (iPhone 14 Pro Max class). Everything is sized in px
+   on purpose — do not scale buttons or rows with the viewport.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Duo Rounded";
+  src: url("./fonts/nunito-latin.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Palette — named after the Figma fills */
+  --duo-feather-100: #ecffde;
+  --duo-feather-200: #d6ffb8;
+  --duo-feather-500: #58cc02;
+  --duo-feather-600: #79d634;
+  --duo-feather-700: #58a700;
+  --duo-feather-800: #478700;
+
+  --duo-macaw-100: #e8f7fe;
+  --duo-macaw-150: #ddf4ff;
+  --duo-macaw-200: #d1ebf7;
+  --duo-macaw-300: #63c9f9;
+  --duo-macaw-500: #1cb0f6;
+  --duo-macaw-600: #1899d6;
+
+  --duo-cardinal-100: #ffdfe0;
+  --duo-cardinal-500: #ff4b4b;
+
+  --duo-bee-100: #ffef8f;
+  --duo-bee-200: #fbe56d;
+  --duo-bee-500: #ffc800;
+  --duo-bee-600: #e6a000;
+  --duo-bee-700: #cd7900;
+
+  --duo-fox-100: #ffedab;
+  --duo-fox-500: #ff9600;
+  --duo-fox-700: #cd7900;
+
+  --duo-beetle-100: #f4e6ff;
+  --duo-beetle-200: #edd1ff;
+  --duo-beetle-300: #daa0ff;
+  --duo-beetle-500: #ce82ff;
+  --duo-beetle-600: #a568cc;
+  --duo-beetle-700: #9069cd;
+
+  --duo-pink-100: #fff2f9;
+  --duo-pink-200: #ffe5f4;
+  --duo-pink-500: #d84f9e;
+  --duo-mint-500: #5aeab1;
+
+  --duo-eel: #4b4b4b;
+  --duo-wolf: #777777;
+  --duo-hare: #afafaf;
+  --duo-swan: #e5e5e5;
+  --duo-polar: #f7f7f7;
+  --duo-snow: #ffffff;
+  --duo-scrim: rgba(0, 0, 0, 0.5);
+
+  /* Semantic aliases */
+  --duo-text: var(--duo-eel);
+  --duo-text-2: var(--duo-wolf);
+  --duo-text-3: var(--duo-hare);
+  --duo-line: var(--duo-swan);
+  --duo-blue: var(--duo-macaw-500);
+  --duo-blue-dark: var(--duo-macaw-600);
+  --duo-green: var(--duo-feather-500);
+  --duo-green-dark: var(--duo-feather-800);
+  --duo-purple: var(--duo-beetle-500);
+  --duo-purple-dark: var(--duo-beetle-600);
+
+  /* Type */
+  --duo-font: "DIN 2014 Rounded VF", "DIN Next Rounded", "din-round",
+    "Duo Rounded", "Nunito", ui-rounded, "Segoe UI Rounded", system-ui,
+    sans-serif;
+  --duo-font-web: "Instrument Sans", "Inter", "Duo Rounded", "Nunito",
+    system-ui, sans-serif;
+
+  /* Radii */
+  --duo-r-xs: 8px;
+  --duo-r-sm: 10px;
+  --duo-r: 13px;
+  --duo-r-lg: 16px;
+  --duo-r-xl: 20px;
+  --duo-r-pill: 999px;
+
+  /* Elevation: Duolingo is chunky, not floaty. Edges are solid offsets. */
+  --duo-edge: 5px;
+  --duo-shadow-card: 0 2px 0 var(--duo-line);
+  --duo-shadow-sheet: 0 -8px 24px rgba(0, 0, 0, 0.2);
+
+  /* Motion */
+  --duo-ease: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --duo-press: 60ms;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+.duo-page,
+.duo-phone {
+  font-family: var(--duo-font);
+  color: var(--duo-text);
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.duo-page *,
+.duo-phone *,
+.duo-sheet *,
+.duo-dialog * {
+  box-sizing: border-box;
+}
+
+.duo-page {
+  background: var(--duo-snow);
+}
+
+.duo-page ::selection {
+  background: var(--duo-macaw-150);
+}
+
+.duo-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  flex: none;
+  pointer-events: none;
+}
+
+.duo-icon--xs { width: 16px; height: 16px; }
+.duo-icon--sm { width: 20px; height: 20px; }
+.duo-icon--lg { width: 32px; height: 32px; }
+.duo-icon--xl { width: 48px; height: 48px; }
+
+.duo-phone {
+  position: relative;
+  width: 430px;
+  height: 932px;
+  background: var(--duo-snow);
+  border-radius: 40px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.duo-screen {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  background: var(--duo-snow);
+}
+
+.duo-screen::-webkit-scrollbar { display: none; }
+
+.duo-home-indicator {
+  flex: none;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: inherit;
+}
+
+.duo-home-indicator::after {
+  content: "";
+  width: 148px;
+  height: 5px;
+  border-radius: 99px;
+  background: #000;
+}
+
+/* Typography helpers — sizes taken verbatim from the Figma text styles */
+.duo-h2 { font-size: 26px; font-weight: 800; line-height: 1.2; letter-spacing: -0.52px; margin: 0; }
+.duo-h3 { font-size: 22px; font-weight: 800; line-height: 1.2; letter-spacing: -0.44px; margin: 0; }
+.duo-h4 { font-size: 21px; font-weight: 800; line-height: 1.1; letter-spacing: -0.105px; margin: 0; }
+.duo-body-lg { font-size: 20px; font-weight: 400; line-height: 1.2; letter-spacing: 0.6px; }
+.duo-body { font-size: 16px; font-weight: 400; line-height: 1.2; letter-spacing: -0.16px; }
+.duo-bold { font-weight: 800; }
+.duo-muted { color: var(--duo-text-3); }
+.duo-screen-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.52px;
+  line-height: 1.2;
+  color: var(--duo-text);
+  margin: 2px 16px 12px;
+}
+
+/* --------------------------------------------------------------------------
+   App bars and counters
+   -------------------------------------------------------------------------- */
+.duo-appbar {
+  flex: none;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: var(--duo-snow);
+  gap: 12px;
+}
+
+.duo-appbar__side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.duo-appbar__title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  text-align: center;
+  flex: 1;
+}
+
+.duo-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.32px;
+  color: var(--duo-text);
+  white-space: nowrap;
+}
+
+.duo-counter .duo-icon { width: 28px; height: 26px; }
+
+/* Lesson bar: close ×, flexible progress, hearts */
+.duo-lessonbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 54px;
+  padding: 8px 16px;
+  background: var(--duo-snow);
+}
+
+.duo-lessonbar .duo-progress { flex: 1; }
+.duo-lessonbar__close,
+.duo-iconbtn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: var(--duo-hare);
+  cursor: pointer;
+  border-radius: 8px;
+  flex: none;
+}
+
+.duo-iconbtn:active { background: var(--duo-polar); }
+.duo-iconbtn--boxed {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r);
+  background: var(--duo-snow);
+  box-shadow: 0 2px 0 var(--duo-line);
+  color: var(--duo-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons — 48px face + 5px solid edge. No gradients, no ripple.
+   -------------------------------------------------------------------------- */
+.duo-btn {
+  --duo-btn-face: var(--duo-blue);
+  --duo-btn-edge: var(--duo-blue-dark);
+  --duo-btn-text: #fff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--duo-r);
+  background: var(--duo-btn-face);
+  color: var(--duo-btn-text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 5px 0 var(--duo-btn-edge);
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform var(--duo-press) ease, box-shadow var(--duo-press) ease;
+}
+
+.duo-btn .duo-icon { width: 22px; height: 22px; }
+
+.duo-btn:hover { filter: brightness(1.03); }
+
+.duo-btn:active,
+.duo-btn.is-pressed {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 var(--duo-btn-edge);
+}
+
+.duo-btn:focus-visible,
+.duo-iconbtn:focus-visible,
+.duo-choice:focus-visible,
+.duo-word:focus-visible,
+.duo-course:focus-visible,
+.duo-node:focus-visible {
+  outline: 3px solid var(--duo-macaw-500);
+  outline-offset: 3px;
+}
+
+.duo-btn--green {
+  --duo-btn-face: var(--duo-green);
+  --duo-btn-edge: var(--duo-green-dark);
+}
+
+.duo-btn--purple {
+  --duo-btn-face: var(--duo-purple);
+  --duo-btn-edge: var(--duo-purple-dark);
+}
+
+.duo-btn--red {
+  --duo-btn-face: var(--duo-cardinal-500);
+  --duo-btn-edge: #e53b3b;
+}
+
+.duo-btn--gold {
+  --duo-btn-face: var(--duo-bee-500);
+  --duo-btn-edge: var(--duo-bee-600);
+  --duo-btn-text: var(--duo-eel);
+}
+
+.duo-btn--secondary {
+  --duo-btn-face: var(--duo-snow);
+  --duo-btn-edge: var(--duo-line);
+  --duo-btn-text: var(--duo-blue);
+  border: 2px solid var(--duo-line);
+  padding: 0 14px;
+}
+
+.duo-btn--ghost {
+  --duo-btn-face: transparent;
+  --duo-btn-edge: transparent;
+  --duo-btn-text: var(--duo-blue);
+  box-shadow: none;
+  text-transform: none;
+  letter-spacing: -0.16px;
+  padding: 0 10px;
+}
+
+.duo-btn--ghost:active { transform: none; background: var(--duo-macaw-100); }
+
+.duo-btn:disabled,
+.duo-btn[aria-disabled="true"] {
+  --duo-btn-face: var(--duo-line);
+  --duo-btn-edge: var(--duo-line);
+  --duo-btn-text: var(--duo-text-3);
+  box-shadow: none;
+  pointer-events: none;
+  transform: none;
+  filter: none;
+}
+
+.duo-btn--secondary:disabled {
+  --duo-btn-face: var(--duo-snow);
+  --duo-btn-text: var(--duo-line);
+}
+
+.duo-btn--block { display: flex; width: 100%; }
+.duo-btn--lg { height: 52px; border-radius: var(--duo-r-lg); font-size: 17px; }
+.duo-btn--sm {
+  height: 38px;
+  border-radius: var(--duo-r-sm);
+  padding: 0 12px;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  box-shadow: 0 3px 0 var(--duo-btn-edge);
+}
+.duo-btn--sm:active { transform: translateY(3px); }
+.duo-btn--icon { width: 48px; padding: 0; }
+.duo-btn--title { text-transform: none; letter-spacing: -0.16px; }
+
+/* --------------------------------------------------------------------------
+   Progress bar — 19px tall track, 5px gloss, green by default.
+   Set --duo-progress-value (0–100).
+   -------------------------------------------------------------------------- */
+.duo-progress {
+  --duo-progress-value: 0;
+  --duo-progress-color: var(--duo-green);
+  --duo-progress-shine: var(--duo-feather-600);
+  position: relative;
+  height: 19px;
+  border-radius: 64px;
+  background: var(--duo-line);
+  overflow: hidden;
+}
+
+.duo-progress--gold {
+  --duo-progress-color: var(--duo-bee-500);
+  --duo-progress-shine: var(--duo-bee-200);
+}
+
+.duo-progress--blue {
+  --duo-progress-color: var(--duo-macaw-500);
+  --duo-progress-shine: #6fc7f8;
+}
+
+.duo-progress--purple {
+  --duo-progress-color: var(--duo-purple);
+  --duo-progress-shine: var(--duo-beetle-300);
+}
+
+.duo-progress__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: max(5px, calc(var(--duo-progress-value) * 1%));
+  border-radius: 64px;
+  background: var(--duo-progress-color);
+  transition: width 400ms var(--duo-ease);
+}
+
+.duo-progress__fill::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 4px;
+  height: 5px;
+  border-radius: 6px;
+  background: var(--duo-progress-shine);
+  opacity: 0.9;
+}
+
+/* Optional in-bar label. White with a soft shadow reads over the filled half;
+   for values below ~50% put the number above the bar instead. */
+.duo-progress__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+}
+
+.duo-progress.is-complete .duo-progress__label {
+  color: #fff;
+}
+
+/* Progress ring — set --duo-ring-value */
+.duo-ring {
+  --duo-ring-value: 0;
+  --duo-ring-size: 84px;
+  --duo-ring-width: 6px;
+  --duo-ring-color: var(--duo-purple);
+  position: relative;
+  width: var(--duo-ring-size);
+  height: var(--duo-ring-size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.duo-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--duo-ring-color) calc(var(--duo-ring-value) * 1%),
+    var(--duo-line) 0
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - var(--duo-ring-width)),
+    #000 calc(100% - var(--duo-ring-width) + 0.5px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - var(--duo-ring-width)),
+    #000 calc(100% - var(--duo-ring-width) + 0.5px)
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Section header (purple path header)
+   -------------------------------------------------------------------------- */
+.duo-section-header {
+  display: flex;
+  align-items: stretch;
+  min-height: 75px;
+  margin: 0 16px;
+  background: var(--duo-purple);
+  color: #fff;
+  border-radius: var(--duo-r);
+  box-shadow: 0 4px 0 var(--duo-purple-dark);
+  overflow: hidden;
+}
+
+.duo-section-header__body {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.duo-section-header__eyebrow {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--duo-beetle-200);
+}
+
+.duo-section-header__title {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.105px;
+  line-height: 1.1;
+}
+
+.duo-section-header__action {
+  width: 54px;
+  border-left: 2px solid var(--duo-purple-dark);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: none;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+.duo-section-header__action:active { background: var(--duo-purple-dark); }
+
+/* --------------------------------------------------------------------------
+   Lesson path
+   -------------------------------------------------------------------------- */
+.duo-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px 30px;
+}
+
+.duo-path__row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(var(--duo-path-x, 0px));
+}
+
+.duo-node {
+  position: relative;
+  width: 76px;
+  height: 70px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  flex: none;
+  touch-action: manipulation;
+}
+
+.duo-node__edge,
+.duo-node__face {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+}
+
+.duo-node__edge {
+  top: 7px;
+  bottom: 0;
+  background: var(--duo-node-edge, var(--duo-purple-dark));
+}
+
+.duo-node__face {
+  top: 0;
+  bottom: 7px;
+  background: var(--duo-node-face, var(--duo-purple));
+  display: grid;
+  place-items: center;
+  color: #fff;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.22);
+}
+
+.duo-node .duo-icon { width: 42px; height: 38px; }
+
+.duo-node:active .duo-node__face { transform: translateY(4px); }
+.duo-node:active .duo-node__edge { transform: translateY(4px); }
+
+.duo-node--gold {
+  --duo-node-face: var(--duo-bee-500);
+  --duo-node-edge: var(--duo-bee-600);
+  color: var(--duo-bee-700);
+}
+
+.duo-node--locked {
+  --duo-node-face: var(--duo-swan);
+  --duo-node-edge: #d2d2d2;
+  cursor: default;
+}
+
+.duo-node--locked .duo-node__face { color: var(--duo-hare); opacity: 0.75; }
+
+.duo-node--current .duo-node__face {
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.25),
+    0 0 0 7px #fff,
+    0 0 0 11px var(--duo-beetle-200);
+}
+
+.duo-node--pressed .duo-node__face { transform: translateY(4px); }
+
+.duo-node--chest .duo-icon { width: 40px; height: 38px; }
+
+.duo-path__stars {
+  display: flex;
+  gap: 6px;
+  height: 14px;
+  color: var(--duo-swan);
+}
+
+.duo-path__stars .is-on { color: var(--duo-bee-500); }
+.duo-path__stars .duo-icon { width: 14px; height: 14px; }
+
+.duo-start {
+  position: relative;
+  padding: 9px 18px;
+  background: #fff;
+  border: 2px solid var(--duo-line);
+  border-radius: 12px;
+  box-shadow: 0 4px 0 var(--duo-line);
+  color: var(--duo-purple);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.duo-start::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-right: 2px solid var(--duo-line);
+  border-bottom: 2px solid var(--duo-line);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.duo-start:active { transform: translateY(4px); box-shadow: none; }
+
+/* --------------------------------------------------------------------------
+   Question screen: title, mascot bubble, answer lines, word bank
+   -------------------------------------------------------------------------- */
+.duo-question {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 6px 16px 12px;
+}
+
+.duo-mascot {
+  width: 122px;
+  flex: none;
+  height: 118px;
+  border-radius: 28px;
+  background: var(--duo-polar);
+  display: grid;
+  place-items: center;
+  color: var(--duo-hare);
+  overflow: hidden;
+}
+
+.duo-mascot .duo-icon { width: 74px; height: 74px; }
+
+.duo-bubble {
+  position: relative;
+  flex: 1;
+  min-height: 84px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r-lg);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  line-height: 1.3;
+}
+
+.duo-bubble::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 24px;
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-left: 2px solid var(--duo-line);
+  border-bottom: 2px solid var(--duo-line);
+  transform: rotate(45deg);
+}
+
+.duo-bubble--top::before {
+  left: 26px;
+  top: auto;
+  bottom: -9px;
+  border: 0;
+  border-right: 2px solid var(--duo-line);
+  border-bottom: 2px solid var(--duo-line);
+}
+
+.duo-bubble__audio {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--duo-blue);
+  font: inherit;
+  cursor: pointer;
+}
+
+.duo-bubble__audio .duo-icon { width: 26px; height: 22px; }
+
+.duo-bubble__hint {
+  margin-top: 2px;
+  font-size: 18px;
+  color: var(--duo-text-2);
+  letter-spacing: 0.3px;
+}
+
+.duo-answer-area {
+  padding: 4px 16px 0;
+}
+
+.duo-answer-line {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px 0;
+  border-bottom: 2px solid var(--duo-line);
+}
+
+.duo-word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  gap: 10px 8px;
+  padding: 24px 16px;
+  min-height: 190px;
+}
+
+.duo-word {
+  height: 46px;
+  padding: 0 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r);
+  background: #fff;
+  box-shadow: 0 2px 0 var(--duo-line);
+  color: var(--duo-text);
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition: transform 60ms ease, box-shadow 60ms ease;
+}
+
+.duo-word:active { transform: translateY(2px); box-shadow: none; }
+
+/* A word promoted from the bank onto the answer line reads as blue text, not
+   as a chip: tap it again to send it back. */
+.duo-word--placed {
+  height: 40px;
+  padding: 0 2px;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--duo-macaw-500);
+  font-weight: 700;
+}
+
+/* The bank keeps the slot of a used word so the remaining words do not
+   reflow; only the word itself disappears. */
+.duo-word--used {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The File-1 mock draws selected words as bank chips. The live app uses the
+   blue text above; opt into the mock's look when you need 1:1 Figma fidelity. */
+.duo-answer-line--chips .duo-word--placed {
+  height: 46px;
+  padding: 0 13px;
+  background: #fff;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r);
+  box-shadow: 0 2px 0 var(--duo-line);
+  color: var(--duo-text);
+  font-weight: 400;
+}
+
+/* Sticky bottom action area */
+.duo-actions {
+  margin-top: auto;
+  padding: 12px 16px 16px;
+  background: #fff;
+}
+
+.duo-actions--tinted { background: var(--duo-feather-200); }
+.duo-actions--flush { padding: 0 16px 16px; }
+
+/* --------------------------------------------------------------------------
+   Speech / correct-answer sheet (bottom panel, not a floating toast)
+   -------------------------------------------------------------------------- */
+.duo-result {
+  flex: none;
+  padding: 14px 16px 16px;
+  background: var(--duo-feather-200);
+  border-radius: 0;
+  animation: duo-result-in 280ms var(--duo-ease) both;
+}
+
+@keyframes duo-result-in {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.duo-result--error { background: var(--duo-cardinal-100); }
+
+.duo-result__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.duo-result__title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--duo-feather-700);
+}
+
+.duo-result--error .duo-result__title { color: #d33131; }
+
+.duo-result__spacer { flex: 1; }
+
+.duo-result__tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--duo-feather-700);
+}
+
+.duo-result__tools .duo-iconbtn { width: 34px; height: 34px; color: inherit; }
+
+.duo-result .duo-btn { --duo-btn-face: var(--duo-green); --duo-btn-edge: var(--duo-green-dark); }
+
+/* --------------------------------------------------------------------------
+   Check circles and day tracker
+   -------------------------------------------------------------------------- */
+.duo-check {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--duo-fox-500);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.duo-check .duo-icon { width: 16px; height: 14px; }
+
+.duo-check--empty { background: var(--duo-line); }
+
+.duo-check--iced {
+  background: var(--duo-macaw-300);
+  box-shadow: inset 0 0 0 4px var(--duo-macaw-500);
+}
+
+.duo-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  min-width: 30px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.32px;
+  color: var(--duo-fox-500);
+}
+
+.duo-day--empty { color: var(--duo-hare); }
+
+.duo-streak-card {
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r-lg);
+  background: #fff;
+  overflow: hidden;
+}
+
+.duo-streak-card__days {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px 10px;
+}
+
+.duo-streak-card__note {
+  padding: 12px 18px;
+  border-top: 2px solid var(--duo-line);
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: -0.16px;
+  color: var(--duo-text-2);
+}
+
+/* --------------------------------------------------------------------------
+   Streak hero
+   -------------------------------------------------------------------------- */
+.duo-streak-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 48px 16px 24px;
+  text-align: center;
+}
+
+.duo-streak-hero__flame { width: 124px; height: 150px; }
+.duo-streak-hero__number {
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--duo-fox-500);
+}
+.duo-streak-hero__label {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: var(--duo-fox-500);
+}
+
+/* --------------------------------------------------------------------------
+   Cards, stats, tasks, quests
+   -------------------------------------------------------------------------- */
+.duo-card {
+  background: #fff;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r-lg);
+}
+
+.duo-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 68px;
+  padding: 10px 14px;
+  border: 2px solid var(--duo-line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.duo-stat__icon { width: 22px; height: 24px; flex: none; }
+.duo-stat__text { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.duo-stat__value { font-size: 16px; font-weight: 800; letter-spacing: -0.32px; }
+.duo-stat__label { font-size: 16px; font-weight: 400; letter-spacing: -0.16px; color: var(--duo-text-3); }
+
+.duo-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.duo-task-list {
+  border: 2px solid var(--duo-line);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.duo-task {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 18px;
+  background: #fff;
+}
+
+.duo-task + .duo-task { border-top: 2px solid var(--duo-line); }
+
+.duo-task__icon {
+  width: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding-top: 2px;
+}
+
+.duo-task__icon .duo-icon { width: 38px; height: 40px; }
+.duo-task__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
+.duo-task__title { font-size: 21px; font-weight: 800; letter-spacing: -0.105px; line-height: 1.1; }
+.duo-task__reward { flex: none; align-self: center; width: 42px; display: grid; place-items: center; }
+.duo-task__reward .duo-icon { width: 38px; height: 36px; }
+
+.duo-task--done {
+  border: 2px solid var(--duo-macaw-500);
+  border-radius: 10px;
+  background-color: var(--duo-macaw-100);
+  background-image: repeating-linear-gradient(
+    115deg,
+    transparent 0 18px,
+    #f8fcff 18px 36px
+  );
+}
+
+.duo-task--done .duo-task__title { color: var(--duo-macaw-500); }
+
+.duo-task--special {
+  border: 2px solid var(--duo-pink-500);
+  border-radius: 10px;
+  background-color: var(--duo-pink-200);
+  background-image: repeating-linear-gradient(
+    115deg,
+    transparent 0 18px,
+    var(--duo-pink-100) 18px 36px
+  );
+}
+
+.duo-task--special .duo-task__title { color: var(--duo-pink-500); }
+.duo-task__meta { display: flex; align-items: center; gap: 4px; font-size: 16px; font-weight: 800; color: var(--duo-text-3); }
+.duo-task__meta .duo-icon { width: 14px; height: 14px; }
+
+.duo-quest-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--duo-bee-500);
+  padding: 8px 16px 18px;
+}
+
+.duo-mini-progress {
+  position: relative;
+  height: 16px;
+  border-radius: 99px;
+  background: var(--duo-line);
+  overflow: hidden;
+}
+
+.duo-mini-progress > span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: max(6px, calc(var(--duo-progress-value, 0) * 1%));
+  border-radius: 99px;
+  background: var(--duo-bee-500);
+}
+
+.duo-mini-progress > span::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: 3px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--duo-bee-200);
+}
+
+.duo-mini-progress__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.14);
+}
+
+.duo-mini-progress__label--ink { color: var(--duo-text-3); }
+
+/* --------------------------------------------------------------------------
+   Bottom navigation — 94px tall, white, 1px hairlines, 40px targets
+   -------------------------------------------------------------------------- */
+.duo-bottom-nav {
+  flex: none;
+  height: 94px;
+  padding: 14px 16px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #fff;
+  border-top: 1px solid var(--duo-line);
+}
+
+.duo-nav-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--duo-r-xs);
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex: none;
+}
+
+.duo-nav-btn .duo-icon { width: 32px; height: 32px; }
+
+.duo-nav-btn[aria-current="page"] {
+  background: var(--duo-macaw-150);
+  box-shadow: inset 0 0 0 2px var(--duo-macaw-300);
+}
+
+.duo-nav-btn[aria-current="page"] .duo-icon { width: 30px; height: 30px; }
+
+.duo-nav-btn:active { transform: translateY(1px); }
+
+.duo-nav-btn__badge {
+  position: relative;
+}
+
+.duo-nav-btn__badge::after {
+  content: attr(data-badge);
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 99px;
+  background: var(--duo-cardinal-500);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   Profile
+   -------------------------------------------------------------------------- */
+.duo-profile-hero {
+  position: relative;
+  height: 278px;
+  background: var(--duo-mint-500);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.duo-profile-hero__gear {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: var(--duo-eel);
+  opacity: 0.85;
+}
+
+.duo-avatar {
+  width: 164px;
+  height: 164px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--duo-blue);
+  display: grid;
+  place-items: center;
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  border: 6px solid rgba(255, 255, 255, 0.55);
+  margin-bottom: -14px;
+  overflow: hidden;
+}
+
+.duo-avatar--sm { width: 40px; height: 40px; border: 0; font-size: 16px; letter-spacing: -0.5px; }
+.duo-avatar--md { width: 64px; height: 64px; border: 0; font-size: 24px; letter-spacing: -1px; }
+
+.duo-profile {
+  padding: 14px 16px 24px;
+}
+
+.duo-profile__name { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+.duo-profile__meta { margin-top: 2px; font-size: 17px; color: var(--duo-text-2); letter-spacing: -0.2px; }
+
+.duo-profile__stats {
+  display: flex;
+  align-items: stretch;
+  margin: 16px 0;
+}
+
+.duo-profile__stat {
+  flex: 1;
+  text-align: center;
+  border-right: 2px solid var(--duo-line);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.duo-profile__stat:first-child { text-align: left; align-items: flex-start; }
+.duo-profile__stat:last-child { border-right: 0; text-align: right; align-items: flex-end; }
+.duo-profile__stat b { font-size: 22px; font-weight: 800; letter-spacing: -0.44px; }
+.duo-profile__stat span { font-size: 16px; color: var(--duo-text-2); }
+
+.duo-profile__actions { display: flex; gap: 12px; }
+.duo-profile__actions .duo-btn { flex: 1; }
+.duo-profile__actions .duo-btn--secondary { box-shadow: 0 4px 0 var(--duo-line); }
+
+.duo-friends {
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.duo-friends__title { font-size: 21px; font-weight: 800; letter-spacing: -0.105px; }
+.duo-friends__row { display: flex; align-items: center; gap: 34px; padding: 2px 0 8px; }
+
+.duo-friend {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--duo-polar);
+  color: var(--duo-hare);
+  flex: none;
+  position: relative;
+}
+
+.duo-friend--add {
+  border: 2px dashed var(--duo-hare);
+  background: #fff;
+}
+.duo-friend--add .duo-icon { width: 22px; height: 22px; }
+.duo-friend__badge {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--duo-purple);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  border: 2px solid #fff;
+}
+.duo-friend__badge .duo-icon { width: 10px; height: 10px; }
+
+/* --------------------------------------------------------------------------
+   Lists (courses, settings, language picker)
+   -------------------------------------------------------------------------- */
+.duo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.duo-list__heading {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.44px;
+  margin: 18px 16px 4px;
+}
+
+.duo-course {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 62px;
+  padding: 10px 16px;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r);
+  background: #fff;
+  box-shadow: 0 3px 0 var(--duo-line);
+  color: var(--duo-text);
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.duo-course:active { transform: translateY(3px); box-shadow: none; }
+
+.duo-course[aria-selected="true"] {
+  color: var(--duo-blue);
+  border-color: var(--duo-blue);
+  background: var(--duo-macaw-150);
+  box-shadow: 0 3px 0 var(--duo-macaw-300);
+}
+
+.duo-course__flag { width: 29px; height: 22px; flex: none; }
+.duo-course__flag .duo-icon { width: 29px; height: 22px; }
+.duo-course__meta { margin-left: auto; color: var(--duo-text-3); font-size: 16px; font-weight: 800; }
+
+.duo-sheet-head {
+  position: relative;
+  flex: none;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--duo-line);
+  background: #fff;
+}
+
+.duo-sheet-head__close {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.duo-sheet-head__title { font-size: 20px; font-weight: 800; letter-spacing: -0.2px; }
+
+/* Settings-style rows (derived from the course/list patterns) */
+.duo-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 62px;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--duo-line);
+  background: #fff;
+}
+.duo-row:last-child { border-bottom: 0; }
+.duo-row__title { flex: 1; font-size: 18px; font-weight: 700; letter-spacing: -0.2px; }
+.duo-row__detail { font-size: 16px; font-weight: 700; color: var(--duo-text-3); }
+.duo-list-card { border: 2px solid var(--duo-line); border-radius: var(--duo-r); overflow: hidden; background: #fff; }
+
+/* --------------------------------------------------------------------------
+   Choice rows + proficiency bars
+   -------------------------------------------------------------------------- */
+.duo-choice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 66px;
+  padding: 12px 18px;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r);
+  background: #fff;
+  box-shadow: 0 3px 0 var(--duo-line);
+  color: var(--duo-text);
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.duo-choice:active { transform: translateY(3px); box-shadow: none; }
+.duo-choice[aria-pressed="true"],
+.duo-choice[aria-selected="true"] {
+  border-color: var(--duo-blue);
+  background: var(--duo-macaw-150);
+  color: var(--duo-blue);
+  box-shadow: 0 3px 0 var(--duo-macaw-300);
+}
+
+.duo-prof {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 30px;
+  height: 22px;
+  flex: none;
+}
+.duo-prof i {
+  display: block;
+  width: 6px;
+  border-radius: 2px;
+  background: var(--duo-macaw-200);
+}
+.duo-prof i:nth-child(1) { height: 10px; }
+.duo-prof i:nth-child(2) { height: 13px; }
+.duo-prof i:nth-child(3) { height: 18px; }
+.duo-prof i:nth-child(4) { height: 22px; }
+.duo-prof i.is-on { background: var(--duo-macaw-600); }
+
+/* --------------------------------------------------------------------------
+   Leaderboard (from the Marvilo kit, rebuilt on File-1 tokens)
+   -------------------------------------------------------------------------- */
+.duo-board { display: flex; flex-direction: column; }
+
+.duo-board__zone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: var(--duo-feather-100);
+  color: var(--duo-feather-700);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--duo-macaw-200);
+}
+.duo-board__zone .duo-icon { width: 14px; height: 14px; }
+.duo-board__zone--demote { background: var(--duo-cardinal-100); color: #d33131; border-color: #ffc8c8; }
+
+.duo-board-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 62px;
+  padding: 8px 14px;
+  border-bottom: 2px solid var(--duo-line);
+  background: #fff;
+}
+.duo-board-row:last-child { border-bottom: 0; }
+.duo-board-row--me { background: var(--duo-macaw-100); }
+
+.duo-board-row__rank { width: 28px; font-size: 17px; font-weight: 800; color: var(--duo-text-3); text-align: center; }
+.duo-board-row--up .duo-board-row__rank { color: var(--duo-feather-700); }
+.duo-board-row--down .duo-board-row__rank { color: #d33131; }
+.duo-board-row__name { flex: 1; font-size: 18px; font-weight: 800; letter-spacing: -0.2px; }
+.duo-board-row__xp { font-size: 16px; font-weight: 800; color: var(--duo-text-3); }
+
+/* --------------------------------------------------------------------------
+   Shop + badges
+   -------------------------------------------------------------------------- */
+.duo-shop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.duo-shop-item {
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r);
+  background: #fff;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.duo-shop-item__art {
+  height: 84px;
+  display: grid;
+  place-items: center;
+}
+.duo-shop-item__art .duo-icon { width: 62px; height: 66px; }
+.duo-shop-item__name { font-size: 18px; font-weight: 800; letter-spacing: -0.2px; }
+
+.duo-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--duo-blue);
+}
+.duo-price .duo-icon { width: 18px; height: 18px; }
+
+.duo-badge {
+  width: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--duo-text-2);
+}
+.duo-badge__disc {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 35% 28%, #ffe98a, var(--duo-bee-500) 58%, var(--duo-bee-600));
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.12);
+  color: var(--duo-bee-700);
+}
+.duo-badge__disc .duo-icon { width: 38px; height: 38px; }
+.duo-badge--locked .duo-badge__disc { background: var(--duo-swan); color: var(--duo-hare); box-shadow: none; }
+
+/* --------------------------------------------------------------------------
+   Overlays: scrim, bottom sheet, dialog, toast
+   -------------------------------------------------------------------------- */
+.duo-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--duo-scrim);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms linear;
+  z-index: 80;
+}
+.duo-scrim.is-open { opacity: 1; pointer-events: auto; }
+.duo-phone .duo-scrim { position: absolute; }
+
+.duo-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: var(--duo-r-xl) var(--duo-r-xl) 0 0;
+  box-shadow: var(--duo-shadow-sheet);
+  transform: translateY(102%);
+  transition: transform 280ms var(--duo-ease);
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+.duo-sheet.is-open { transform: translateY(0); }
+.duo-phone .duo-sheet { position: absolute; max-height: 82%; }
+
+.duo-sheet__handle {
+  width: 44px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--duo-swan);
+  margin: 10px auto 2px;
+  flex: none;
+}
+
+.duo-sheet__body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px 0 0;
+}
+
+.duo-dialog-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--duo-scrim);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms linear;
+}
+.duo-dialog-scrim.is-open { opacity: 1; pointer-events: auto; }
+.duo-phone .duo-dialog-scrim { position: absolute; }
+
+.duo-dialog {
+  width: min(368px, 100%);
+  background: #fff;
+  border-radius: var(--duo-r-lg);
+  overflow: hidden;
+  transform: scale(0.92);
+  transition: transform 160ms var(--duo-ease);
+}
+.duo-dialog-scrim.is-open .duo-dialog { transform: none; }
+
+.duo-dialog__title {
+  padding: 20px 24px 4px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.44px;
+  text-align: center;
+}
+.duo-dialog__body { padding: 8px 24px 22px; text-align: center; font-size: 18px; color: var(--duo-text-2); line-height: 1.4; }
+.duo-dialog__actions { display: flex; gap: 10px; padding: 0 20px 20px; }
+.duo-dialog__actions .duo-btn { flex: 1; }
+
+.duo-toast-host {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+/* Inside a phone the host is absolute so it stays clipped to the device frame.
+   Raise it above a bottom action bar with `--duo-toast-bottom: 116px`. */
+.duo-phone .duo-toast-host { position: absolute; bottom: var(--duo-toast-bottom, 24px); }
+
+.duo-toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(398px, calc(100vw - 32px));
+  padding: 12px 18px;
+  border-radius: var(--duo-r);
+  background: var(--duo-eel);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 180ms ease, transform 180ms var(--duo-ease);
+}
+.duo-toast.is-open { opacity: 1; transform: none; }
+.duo-toast--success { background: var(--duo-feather-200); color: var(--duo-feather-700); }
+.duo-toast--error { background: var(--duo-cardinal-100); color: #d33131; }
+.duo-toast .duo-icon { width: 22px; height: 22px; }
+
+/* --------------------------------------------------------------------------
+   Derived form controls (not drawn in the kit, styled from the same tokens)
+   -------------------------------------------------------------------------- */
+.duo-switch {
+  width: 52px;
+  height: 30px;
+  border: 0;
+  border-radius: var(--duo-r-pill);
+  background: var(--duo-line);
+  position: relative;
+  cursor: pointer;
+  flex: none;
+  transition: background 140ms linear;
+}
+.duo-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+  transition: transform 140ms var(--duo-ease);
+}
+.duo-switch[aria-checked="true"] { background: var(--duo-green); }
+.duo-switch[aria-checked="true"]::after { transform: translateX(22px); }
+
+.duo-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 2px solid var(--duo-line);
+  border-radius: 12px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 18px;
+  color: var(--duo-text);
+  outline: none;
+}
+.duo-input::placeholder { color: var(--duo-hare); }
+.duo-input:focus { border-color: var(--duo-macaw-500); box-shadow: 0 0 0 3px var(--duo-macaw-150); }
+
+.duo-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 16px;
+  border-radius: 99px;
+  background: linear-gradient(
+    to right,
+    var(--duo-green) var(--duo-slider-value, 50%),
+    var(--duo-line) 0
+  );
+  outline: none;
+}
+.duo-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--duo-green);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+  cursor: grab;
+}
+.duo-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--duo-green);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+  cursor: grab;
+}
+
+/* Empty state */
+.duo-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 56px 24px;
+  text-align: center;
+}
+.duo-empty .duo-icon { width: 84px; height: 84px; color: var(--duo-swan); }
+.duo-empty__title { font-size: 22px; font-weight: 800; letter-spacing: -0.44px; }
+.duo-empty__desc { font-size: 16px; color: var(--duo-text-3); line-height: 1.4; max-width: 300px; }
+
+/* --------------------------------------------------------------------------
+   Motion
+   -------------------------------------------------------------------------- */
+@keyframes duo-burst {
+  0% { transform: scale(0.86); }
+  55% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.duo-burst { animation: duo-burst 420ms var(--duo-ease) both; }
+
+@keyframes duo-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  70% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.duo-pop { animation: duo-pop 320ms var(--duo-ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .duo-page *,
+  .duo-page *::before,
+  .duo-page *::after,
+  .duo-phone *,
+  .duo-phone *::before,
+  .duo-phone *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Kit display helpers (for the demo / spec sheets, never in a product page)
+   -------------------------------------------------------------------------- */
+.duo-kit {
+  background: var(--duo-polar);
+  min-height: 100vh;
+  padding: 40px 24px 80px;
+  color: var(--duo-text);
+  font-family: var(--duo-font);
+}
+.duo-kit__inner { max-width: 1120px; margin: 0 auto; }
+.duo-kit__header { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.duo-kit__title { font-size: 44px; font-weight: 800; letter-spacing: -1.4px; line-height: 1; }
+.duo-kit__sub { font-size: 18px; color: var(--duo-text-2); max-width: 620px; line-height: 1.45; }
+.duo-kit__section { margin: 40px 0 0; }
+.duo-kit__section > h2 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.52px;
+  margin: 0 0 4px;
+}
+.duo-kit__section > p { color: var(--duo-text-2); margin: 0 0 16px; font-size: 16px; }
+.duo-kit__grid { display: grid; gap: 16px; }
+.duo-kit__board {
+  background: #fff;
+  border: 2px solid var(--duo-line);
+  border-radius: var(--duo-r-lg);
+  padding: 20px;
+}
+.duo-kit__label { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--duo-text-3); margin-bottom: 12px; }
+.duo-kit__row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.duo-kit__stack { display: flex; flex-direction: column; gap: 12px; }
+.duo-kit__swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
+.duo-swatch { border-radius: 12px; overflow: hidden; border: 2px solid var(--duo-line); background: #fff; }
+.duo-swatch__chip { height: 64px; }
+.duo-swatch__meta { padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+.duo-swatch__name { font-size: 13px; font-weight: 800; }
+.duo-swatch__hex { font-size: 12px; color: var(--duo-text-3); font-family: ui-monospace, monospace; }
+.duo-kit__phones { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; }
+.duo-kit__phone-wrap { display: flex; flex-direction: column; gap: 10px; }
+.duo-kit__caption { font-size: 14px; font-weight: 800; color: var(--duo-text-2); text-align: center; }

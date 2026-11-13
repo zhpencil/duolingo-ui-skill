@@ -1,0 +1,19 @@
+{
+  "name": "duolingo-ui-skill",
+  "owner": {
+    "name": "zhpencil"
+  },
+  "metadata": {
+    "description": "Duolingo-style UI skill for the web: tokens, CSS/JS components, icons and screen references",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "duolingo-ui",
+      "description": "Build web UI in the Duolingo style: 3D slab controls, 2px outlines, gamified lesson paths, word-bank exercises, 58 icons and 16 reference screens, with a dependency-free CSS/JS kit and a Tailwind preset.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./"]
+    }
+  ]
+}
